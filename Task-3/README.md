@@ -107,7 +107,3 @@ B.Tech CSE (Data Science), R. C. Patel Institute of Technology
 CSI ID: **CT_CSI_DV_4845**  
 Email: **221106014@rcpit.ac.in**
 
----
-
-This repository is intended for learning and demonstration purposes and does not contain production secrets or credentials.
-
