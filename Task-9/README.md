@@ -120,9 +120,9 @@ steps:
 
 ###  Authors
 
-**Akash Shnde**
+**Vaishnavi Borase**
 B.Tech CSE (Data Science), R. C. Patel Institute of Technology
-CSI ID: **CT\_CSI\_DV\_4920**
-Email: **[221106045@rcpit.ac.in](mailto:221106045@rcpit.ac.in)**
+CSI ID: **CT\_CSI\_DV\_4845**
+Email: **[221106014@rcpit.ac.in](mailto:221106014@rcpit.ac.in)**
 
 
