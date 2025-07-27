@@ -1,70 +1,67 @@
-# Azure DevOps Pipelines: Creating a Service Connection
+# Azure DevOps: Creating a Service Connection
 
 ## Overview
 
-This repository outlines the process of creating and managing **Service Connections** in Azure DevOps. A Service Connection allows Azure DevOps to securely connect with external services such as Azure, AWS, Docker Hub, GitHub, and others, enabling deployment, integration, and resource management during CI/CD processes.
+Service Connections in Azure DevOps provide secure authentication and authorization to external services such as Azure, Docker registries, GitHub, and more. This enables pipelines to deploy, manage resources, and interact with these services seamlessly.
+
+This guide walks you through creating a Service Connection, focusing primarily on Azure Resource Manager (ARM) connections, which are commonly used for deploying Azure resources.
 
 ## Objectives
 
-- Understand the role of service connections in Azure DevOps pipelines.
-- Create a service connection for Azure Resource Manager.
-- Configure the connection for secure and scoped usage within pipelines.
-- Use the service connection in pipeline YAML or classic pipelines.
+- Understand the concept and importance of service connections.
+- Create a service connection in Azure DevOps to authenticate against Azure.
+- Use the service connection securely within pipelines.
+- Manage service connection permissions and scopes.
 
 ## Prerequisites
 
-- An Azure DevOps Organization and Project.
-- Proper permissions (Project Administrator or Service Connection Administrator).
-- Access to the target external service (e.g., Azure subscription).
+- Access to an Azure DevOps organization and project.
+- Required permissions (Project Administrator or Service Connection Administrator).
+- An active Azure subscription.
+- A Personal Access Token (PAT) with appropriate permissions if needed.
 
 ## Types of Service Connections
 
-Azure DevOps supports various types of service connections, including but not limited to:
+Azure DevOps supports various service connections, including but not limited to:
 
-- **Azure Resource Manager (ARM)**
-- **Docker Registry**
-- **GitHub**
-- **AWS**
-- **Bitbucket Cloud**
-- **Generic Service Connection (for REST-based services)**
+- Azure Resource Manager
+- Docker Registry
+- GitHub
+- AWS
+- Bitbucket Cloud
+- Generic service connections for custom endpoints
 
-This README focuses on setting up an **Azure Resource Manager** service connection.
+## Steps to Create an Azure Resource Manager Service Connection
 
-## Steps to Create a Service Connection (Azure Resource Manager)
+### Via Azure DevOps Portal
 
-### Option 1: Use the Azure DevOps Portal
+1. Navigate to your Azure DevOps project.
+2. Go to **Project Settings** (bottom-left corner).
+3. Click on **Service connections** under **Pipelines**.
+4. Click on **New service connection**.
+5. Select **Azure Resource Manager** and click **Next**.
+6. Choose an authentication method:
+   - **Service principal (automatic)** — Recommended for most users; Azure DevOps creates the service principal.
+   - **Service principal (manual)** — Requires manual details like client ID, secret, tenant, and subscription.
+7. Select your Azure subscription from the dropdown.
+8. Provide a connection name (e.g., `MyAzureConnection`).
+9. Optionally restrict the connection access to specific pipelines.
+10. Click **Verify and save**.
 
-1. Go to your Azure DevOps project.
-2. Navigate to **Project Settings > Service Connections**.
-3. Click **+ New service connection**.
-4. Select **Azure Resource Manager**.
-5. Choose one of the authentication methods:
-   - **Service principal (automatic)** (recommended for most use cases)
-   - **Service principal (manual)** (requires manual entry of app ID, secret, and tenant)
-6. Select your Azure subscription and authorize.
-7. Provide a **Service connection name** (e.g., `MyAzureConnection`) and optionally restrict access to pipelines.
-8. Click **Verify and Save**.
+### Manual Service Principal Creation (Optional)
 
-### Option 2: Manual Service Principal Entry
+If you want to create the service principal manually:
 
-1. Register an application in **Azure Active Directory > App registrations**.
-2. Generate a client secret.
-3. Assign **Contributor** role to the app in the Azure Subscription or Resource Group.
-4. In Azure DevOps, create a new service connection with:
-   - Client ID (Application ID)
-   - Client Secret
-   - Tenant ID
-   - Subscription ID and Name
+- Register an application in Azure Active Directory.
+- Generate a client secret.
+- Assign the service principal the appropriate role in your Azure subscription or resource group (usually Contributor).
+- Enter the service principal details during the service connection setup.
 
-## Usage in YAML Pipelines
+## Using Service Connection in Pipelines
+
+Reference your service connection in pipeline YAML tasks, e.g.,
 
 ```yaml
-trigger:
-- main
-
-pool:
-  vmImage: 'ubuntu-latest'
-
 steps:
 - task: AzureCLI@2
   inputs:
@@ -77,20 +74,21 @@ steps:
 
 ## Best Practices
 
-- Use naming conventions for service connections (e.g., `azure-dev-connection`, `prod-dockerhub`).
-- Restrict access to service connections to only required pipelines or users.
-- Regularly review permissions and rotate secrets if using manual connections.
-- Use environment variables or variable groups to pass credentials securely.
+- Use descriptive and consistent naming for service connections.
+- Limit permissions of service principals to the minimum required.
+- Regularly review and rotate secrets.
+- Restrict service connection access to authorized pipelines and users.
+- Document service connections and their purposes clearly.
 
 ## Resources
 
-- [Create and Use Service Connections in Azure DevOps (Microsoft Docs)](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops)
-- [Video: Azure DevOps Test Plans & Service Connections](https://www.youtube.com/watch?v=Cu7zx9u1sOE)
+- [Azure DevOps Service Connections Documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/service-endpoints?view=azure-devops)
+- [Azure DevOps Service Connections Video Tutorial](https://www.youtube.com/watch?v=Cu7zx9u1sOE)
 
 ## Author
 
-**Vaishnavi Borase**  
+**Akash Shinde**  
 B.Tech CSE (Data Science), R. C. Patel Institute of Technology  
-CSI ID: **CT_CSI_DV_4845**  
-Email: **221106014@rcpit.ac.in**
+CSI ID: **CT_CSI_DV_4920**  
+Email: **221106045@rcpit.ac.in**
 
