@@ -87,8 +87,8 @@ steps:
 
 ## Author
 
-**Akash Shinde**  
+**Vaishnavi Borase**  
 B.Tech CSE (Data Science), R. C. Patel Institute of Technology  
-CSI ID: **CT_CSI_DV_4920**  
-Email: **221106045@rcpit.ac.in**
+CSI ID: **CT_CSI_DV_4845**  
+Email: **221106014@rcpit.ac.in**
 
